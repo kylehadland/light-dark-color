@@ -1,0 +1,49 @@
+---
+import ThemeToggle from "../components/ThemeToggle"
+---
+
+<html lang='en'>
+  <head>
+    <meta charset='utf-8' />
+    <link rel='icon' type='image/svg+xml' href='/favicon.svg' />
+    <meta name='viewport' content='width=device-width' />
+    <meta name='generator' content={Astro.generator} />
+    <title>Astro</title>
+  </head>
+  <body
+    class='bg-slate-100 dark:bg-slate-600 color:bg-lime-400 text-slate-600 dark:text-slate-100 color:text-black'
+  >
+    <div class='h-screen flex flex-col items-center justify-center'>
+      <h1 class='text-5xl font-black m-6'>Light/Dark/Color</h1>
+      <ThemeToggle client:only='preact' />
+    </div>
+  </body>
+</html>
+
+<script is:inline>
+const theme = (() => {
+	if (typeof localStorage !== "undefined" && localStorage.getItem("theme")) {
+		return localStorage.getItem("theme")
+	}
+	if (window.matchMedia("(prefers-color-scheme: dark)").matches) {
+		return "dark"
+	}
+	return "light"
+})()
+
+switch (theme) {
+	case "dark":
+		document.documentElement.classList.remove("color")
+		document.documentElement.classList.add("dark")
+		break
+	case "color":
+		document.documentElement.classList.add("color")
+		document.documentElement.classList.remove("dark")
+		break
+	default:
+		document.documentElement.classList.remove("dark")
+		document.documentElement.classList.remove("color")
+}
+
+window.localStorage.setItem("theme", theme)
+</script>

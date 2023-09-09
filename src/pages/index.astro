@@ -13,9 +13,14 @@ import ThemeToggle from "../components/ThemeToggle"
   <body
     class='bg-slate-100 dark:bg-slate-600 color:bg-lime-400 text-slate-600 dark:text-slate-100 color:text-black'
   >
-    <div class='h-screen flex flex-col items-center justify-center'>
-      <h1 class='text-5xl font-black m-6'>Light/Dark/Color</h1>
+    <div class='h-screen flex flex-col items-center justify-center space-y-6'>
+      <h1 class='text-5xl font-black m-6 text-center'>Light Dark Color</h1>
       <ThemeToggle client:only='preact' />
+      <a
+        class='hover:underline'
+        href='https://www.kylehadland.com.au/blog/light-dark-color'
+        >See article here</a
+      >
     </div>
   </body>
 </html>
